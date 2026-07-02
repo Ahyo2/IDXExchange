@@ -4,7 +4,7 @@ California Property Close Price Prediction Model
 
 ## Project Overview
 
-This repository contains work completed during the internship involving analysis of CRMLS data. The objective is to explore the dataset and prepare it for machine learning models that predict residential property sale prices.
+This repository contains work completed during the internship involving analysis of CRMLS data. The objective is to explore the dataset and prepare it for machine learning models that predict residential property sale prices. The target variable is `ClosePrice`.
 
 ## Repository Structure
 
@@ -13,17 +13,18 @@ This repository contains work completed during the internship involving analysis
 ├── notebooks/
 |   └── 01_exploration.ipynb
 ├── .gitignore
+├── requirements.txt
 └── README.md
 ```
 
-
 ## Dataset
 
-The analysis was performed using 12 months of CRMLS sold property data from June 2025 to May 2026. The notebook assumes the dataset has already been downloaded and is available locally.
+The analysis was performed using 30 months of available CRMLS sold property data from June 2025 to May 2026.
 
 ## Week 1
 
-- Established access to the project dataset
+- Created github
+- Downloaded project data
 - Reviewed the CRMLS metadata documentation
 - Documented the purpose of key dataset columns
 
@@ -40,11 +41,20 @@ The analysis was performed using 12 months of CRMLS sold property data from June
   - BathroomsTotalInteger
   - LotSizeArea
 
+## Week 3
+
+- Remove all columns with > 50% null values
+- Changed categorical features with two options to boolean
+- Used one hot encoding to convert `object` columns with < 15 options to numerical
+
 ## Software
 
 - Python
 - pandas
+- numpy
 - matplotlib
+- seaborn
+- scikitlearn
 - Jupyter Lab/Jupyter Notebook
 
 ## Running the Project
