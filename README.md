@@ -12,6 +12,7 @@ This repository contains work completed during the internship involving analysis
 .
 ├── notebooks/
 |   └── 01_exploration.ipynb
+|   └── 02_preprocessing.ipynb
 ├── .gitignore
 ├── requirements.txt
 └── README.md
@@ -30,22 +31,62 @@ The analysis was performed using 30 months of available CRMLS sold property data
 
 ## Week 2
 
-- Loaded twelve months of CRMLS data into pandas
-- Filtered records to:
+### Loading data
+1. Loaded all CRMLS data using Pandas
+2. Filtered records to:
   - PropertyType = Residential
   - PropertySubType = SingleFamilyResidence
-- Performed exploratory data analysis (EDA) on:
-  - ClosePrice
-  - LivingArea
-  - BedroomsTotal
-  - BathroomsTotalInteger
-  - LotSizeArea
+
+### Exploratory Data Analysis (EDA)
+1. Performed univariate EDA on:
+    - `ClosePrice`
+    - `LivingArea`
+    - `BedroomsTotal`
+    - `BathroomsTotalInteger`
+    - `LotSizeArea`
+    - `CountyOrParish`
+2. Correlation Matrix of the following numerical features:
+    - `ClosePrice`
+    - `LivingArea`
+    - `DaysOnMarket`
+    - `YearBuilt`
+    - `BuildingAreaTotal`
+    - `LotSizeSquareFeet`
+3. Stacked histogram of `ClosePrice` colored by `BathroomsTotalInteger`
+
+### Deliverables
+1. `01_exploration.ipynb`
 
 ## Week 3
 
-- Remove all columns with > 40% null values
-- Changed categorical features with two options to boolean
-- 
+### Preprocessing
+1. Cleaned Dataset as follows:
+    - Dropped duplicates
+    - Removed impossible values and dropped nulls for `ClosePrice`
+    - Converted impossible values to nan for the following columns
+      - `Longitude`/`Latitude`
+      - `LivingArea`
+      - `ParkingTotal`
+      - `LotSizeSquareFeet`
+      - `YearBuilt`
+    - Remove all columns with > 40% null values
+    - Drop observations in states other than California
+    - Drop columns with a single value
+    - Changed Date columns to DateTime format
+    - Dropped redundant, unhelpful, and leaky features
+    - Converted columns with Y/N values to Boolean
+    - Imputed missing values accordingly
+      - `Flooring`, `MLSAreaMajor`, `BuyerOfficeAOR`, `City`, `Levels`, `HighSchoolDistrict`, `PostalCode`, `BuyerAgentAOR`, `ListAgentAOR` imputed with 'Unknown'
+      - `AssociationFee`, `GarageSpaces`, `ParkingTotal` imputed with zero
+      - `LivingArea`, `LotSizeSquareFeet`, `YearBuilt` imputed with median
+      - `BedroomsTotal`, `BathroomsTotalInteger`, `Stories` imputed with mode
+      - Dropped null values for `Latitude`/`Longitude`
+
+2. Used `relativedelta` to split cleaned dataset into training and testing
+
+### Deliverables:
+1. `02_preprocessing.ipynb`
+2. `df_cleaned.csv`
 
 ## Software
 
