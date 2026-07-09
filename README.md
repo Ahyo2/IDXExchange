@@ -43,9 +43,9 @@ The analysis was performed using 30 months of available CRMLS sold property data
 
 ## Week 3
 
-- Remove all columns with > 50% null values
+- Remove all columns with > 40% null values
 - Changed categorical features with two options to boolean
-- Used one hot encoding to convert `object` columns with < 15 options to numerical
+- 
 
 ## Software
 
