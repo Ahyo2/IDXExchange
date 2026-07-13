@@ -64,11 +64,7 @@ The analysis was performed using 30 months of available CRMLS sold property data
     - Dropped duplicates
     - Removed impossible values and dropped nulls for `ClosePrice`
     - Converted impossible values to nan for the following columns
-      - `Longitude`/`Latitude`
-      - `LivingArea`
-      - `ParkingTotal`
-      - `LotSizeSquareFeet`
-      - `YearBuilt`
+      - `Longitude`/`Latitude`, `LivingArea`, `ParkingTotal`, `LotSizeSquareFeet`, `YearBuilt`, `GarageSpaces`
     - Remove all columns with > 40% null values
     - Drop observations in states other than California
     - Drop columns with a single value
@@ -87,6 +83,31 @@ The analysis was performed using 30 months of available CRMLS sold property data
 ### Deliverables:
 1. `02_preprocessing.ipynb`
 2. `df_cleaned.csv`
+
+## Week 4
+
+### General Preprocessing
+1. Dropped more columns that are location based because `Latitude`/`Longitude` are the most specific
+2. Split `Flooring` and `Levels` by comma to encode later
+
+### After Training and Testing Split
+3. Scale continuous and discrete columns using `StandardScaler`
+   - fit_transform on training data and just transform testing
+4. Encode `Flooring_list`, `Levels_list` and `HighSchoolDistrict`
+   - `MultiLabelBinarizer` for `Flooring_list` and `Levels_list`
+   - K-fold target encoding for `HighSchoolDistrict`
+
+### Linear Regression
+1. Used `sklearn.linear_model.LinearRegression()` to train two models
+   - normal model on regular training dataset
+   - log transformed `ClosePrice`
+2. RMSE and R^2 metrics:
+    - Regular RMSE: 586746.74, R^2: 0.6594
+    - Log-transform RMSE: 739778.43, R^2: 0.4586
+3. Residual plots for better visualization
+
+### Deliverables
+1. `O3_baseline_model.ipynb`
 
 ## Software
 
